@@ -1,0 +1,13 @@
+.main{
+    width : 100%;
+    height: 100%;
+}
+
+.topBreaker{
+    color: #212121;
+    opacity: 80%;
+}
+
+.breaker{
+    padding: 1.5% 0;
+}

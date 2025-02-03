@@ -1,0 +1,25 @@
+.main{
+    min-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rightContent{
+    min-width: min-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftContent{
+    display: flex;
+}
+
+.portfolio_logo{
+    border-radius: 50;
+}
+
+.name{
+    padding-left: 10%;
+}
