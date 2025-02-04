@@ -11,3 +11,9 @@
 .breaker{
     padding: 1.5% 0;
 }
+
+.content{
+    display :flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}
