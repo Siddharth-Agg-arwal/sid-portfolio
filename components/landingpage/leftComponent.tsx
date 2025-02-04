@@ -1,103 +1,142 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as Matter from "matter-js";
 
-// Import SVGs as static image URLs (stored in the public folder)
-const shape1 = "/landing_page/arrow.svg";
+// Import multiple SVGs
+const shapes = [
+  "/landing_page/svgs/S.svg",
+  "/landing_page/svgs/I.svg",
+  "/landing_page/svgs/D.svg",
+  "/landing_page/svgs/S.svg",
+  "/landing_page/svgs/I.svg",
+  "/landing_page/svgs/D.svg",
+  "/landing_page/svgs/S.svg",
+  "/landing_page/svgs/I.svg",
+  "/landing_page/svgs/D.svg",
+];
 
-// Set desired width & height for all images
-const IMAGE_WIDTH = 180; // Adjust as needed
-const IMAGE_HEIGHT = 180; // Adjust as needed
+const IMAGE_WIDTH = 180;
+const IMAGE_HEIGHT = 180;
 
 export default function PhysicsSimulation() {
   const sceneRef = useRef<HTMLDivElement>(null);
+  const [canvasSize, setCanvasSize] = useState({ width: 600, height: 600 });
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined" || !sceneRef.current) return;
 
-    // Create engine and world
+    const { width, height } = canvasSize;
+
+    // Create Matter.js engine & world
     const engine = Matter.Engine.create();
     const world = engine.world;
-    engine.world.gravity.y = 1; // Enable gravity
+    engine.world.gravity.y = 1;
 
     // Create renderer
     const render = Matter.Render.create({
       element: sceneRef.current!,
       engine: engine,
       options: {
-        width: 800,
-        height: 600,
+        width,
+        height,
         wireframes: false,
-        background: "#f0f0f0",
+        background: "#0736FE",
       },
     });
 
-    // Create ground
-    const ground = Matter.Bodies.rectangle(400, 580, 810, 20, { isStatic: true });
+    // Responsive helper functions
+    const percentX = (percent: number) => Math.round((percent / 100) * width);
+    const percentY = (percent: number) => Math.round((percent / 100) * height);
 
-    // Function to preload an image
-    const loadImage = (src: string): Promise<HTMLImageElement> => {
-      return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.src = src;
-        img.onload = () => resolve(img);
-        img.onerror = () => reject(new Error(`Failed to load image: ${src}`));
-      });
+    // Create walls & ground
+    const ground = Matter.Bodies.rectangle(percentX(50), height + 10, width, 20, { isStatic: true });
+    const leftWall = Matter.Bodies.rectangle(-10, percentY(50), 20, height, { isStatic: true });
+    const rightWall = Matter.Bodies.rectangle(width + 10, percentY(50), 20, height, { isStatic: true });
+
+    ground.render.visible = false;
+    leftWall.render.visible = false;
+    rightWall.render.visible = false;
+
+    // Function to preload all images once
+    const preloadImages = async (): Promise<HTMLImageElement[]> => {
+      return Promise.all(
+        shapes.map(
+          (src) =>
+            new Promise<HTMLImageElement>((resolve, reject) => {
+              const img = new Image();
+              img.src = src;
+              img.onload = () => resolve(img);
+              img.onerror = () => reject(new Error(`Failed to load image: ${src}`));
+            })
+        )
+      );
     };
 
     // Function to add an image-based physics body
-    const loadSVG = async (imageSrc: string, x: number, y: number) => {
-      try {
-        const img = await loadImage(imageSrc);
+    const createImageBody = (img: HTMLImageElement, x: number, y: number) => {
+      const scaleX = IMAGE_WIDTH / img.width;
+      const scaleY = IMAGE_HEIGHT / img.height;
 
-        // Calculate scale factors based on the original image size
-        const scaleX = IMAGE_WIDTH / img.width;
-        const scaleY = IMAGE_HEIGHT / img.height;
-
-        // Create a rectangle body with the desired size
-        const body = Matter.Bodies.circle(x, y, IMAGE_WIDTH/1.5, {
-          restitution: 0.6, // Bounciness
-          friction: 0.1,
-          density: 0.02,
-          render: {
-            sprite: {
-              texture: imageSrc,
-              xScale: scaleX,
-              yScale: scaleY,
-            },
+      const body = Matter.Bodies.circle(x, y, IMAGE_WIDTH / 2.5, {
+        restitution: 0.6,
+        friction: 0.1,
+        density: 0.02,
+        render: {
+          sprite: {
+            texture: img.src,
+            xScale: 2.0,
+            yScale: 2.0,
           },
-        });
+        },
+      });
 
-        Matter.World.add(world, body);
+      Matter.World.add(world, body);
+    };
+
+    // Load images and start simulation
+    const startSimulation = async () => {
+      try {
+        const images = await preloadImages();
+        const positions = Array.from({ length: 10 }).map(() => ({
+          x: Math.random() * (width - 200) + 100,
+          y: Math.random() * 100,
+        }));
+
+        positions.forEach((pos, i) => createImageBody(images[i % images.length], pos.x, pos.y));
+
+        Matter.World.add(world, [ground, leftWall, rightWall]);
+        const runner = Matter.Runner.create();
+        Matter.Runner.run(runner, engine);
+        Matter.Render.run(render);
       } catch (error) {
         console.error(error);
       }
     };
 
-    // Load images and start simulation only after all images are added
-    const loadAllImages = async () => {
-      const positions = Array.from({ length: 10 }).map(() => ({
-        x: Math.random() * 600 + 100,
-        y: Math.random() * 100,
-      }));
+    const mouse = Matter.Mouse.create(render.canvas);
+    const mouseConstraint = Matter.MouseConstraint.create(engine, {
+      mouse: mouse,
+      constraint: {
+        stiffness: 0.2,
+        render: {
+          visible: false,
+        },
+      },
+    });
 
-      await Promise.all(positions.map((pos) => loadSVG(shape1, pos.x, pos.y)));
+    Matter.World.add(world, mouseConstraint);
+    render.mouse = mouse; // Associate mouse with the render
 
-      // Start physics simulation only after adding objects
-      Matter.World.add(world, [ground]);
-      const runner = Matter.Runner.create();
-      Matter.Runner.run(runner, engine); // Better physics update loop
-      Matter.Render.run(render);
-    };
 
-    loadAllImages();
+
+    startSimulation();
 
     return () => {
       Matter.Render.stop(render);
       Matter.World.clear(world, false);
       Matter.Engine.clear(engine);
     };
-  }, []);
+  }, [canvasSize]);
 
-  return <div ref={sceneRef} className="relative w-[800px] h-[600px] bg-gray-200"></div>;
+  return <div ref={sceneRef} className="absolute inset-0 bg-gray-200"></div>;
 }
