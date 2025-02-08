@@ -1,5 +1,6 @@
 // pages/index.js
 import Carousel from '../components/musicpage/carousel';
+import styles from './css/setmusic.module.css'
 
 export default function MusicPage() {
   // Sample images. Replace with your actual image paths or URLs.
@@ -13,7 +14,7 @@ export default function MusicPage() {
 ];
 
 return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className={styles.main}>
         <Carousel images={images} />
     </div>
     );
