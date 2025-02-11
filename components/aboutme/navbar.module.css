@@ -1,0 +1,49 @@
+.main{
+    min-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rightContent{
+    min-width: min-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftContent{
+    display: flex;
+}
+
+.portfolio_logo{
+    border-radius: 50;
+}
+
+.name{
+    padding-left: 10%;
+}
+
+.navOptions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.navOptions li{
+    min-width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    padding: 0vw 2.5vw;
+    cursor: pointer;
+    border-bottom: 2px solid transparent; /* Default: transparent underline */
+    transition: border-bottom-color 0.3s ease;
+}
+
+.navOptions li.active {
+    border-bottom: 2px solid red;
+    transition: border-bottom-color 0.3s linear;
+}

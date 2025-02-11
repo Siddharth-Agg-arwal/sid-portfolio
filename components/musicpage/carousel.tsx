@@ -124,7 +124,7 @@ export function CarouselMusic() {
                       src={src}
                       alt={`Music image ${index + 1}`}
                       width={300}
-                      height={299}
+                      height={300}
                       className={styles.carousel_image}
                     />
                   </motion.div>
