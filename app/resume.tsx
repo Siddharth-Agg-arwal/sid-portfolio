@@ -1,5 +1,6 @@
 import Experience from '@/components/resume/experience'
 import styles from './css/resume.module.css'
+import Skills from '@/components/resume/skills'
 
 export default function Resume(){
     return (
@@ -8,7 +9,7 @@ export default function Resume(){
                 <Experience />
             </div>
             <div className={styles.middleContent}>
-                middle
+                <Skills />
             </div>
             <div className={styles.rightContent}>
                 right

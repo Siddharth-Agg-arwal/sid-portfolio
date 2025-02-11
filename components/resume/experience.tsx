@@ -11,7 +11,10 @@ export default function Experience(){
 
     return(
         <div className={styles.main}>
-            <div className={styles.heading}>Experience</div>
+            <div className={styles.heading}>
+                <div>Experience</div>
+                <div><Image src="/resume/Down.png" alt="down" width={25} height={25} /></div>
+            </div>
                 {experiences.map((experience) => (
                     <>
                     <div className={styles.card}>

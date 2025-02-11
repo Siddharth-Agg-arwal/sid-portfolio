@@ -1,0 +1,42 @@
+.main{
+    width : 25vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.heading{
+    margin: 2vh 2vw;
+    font-size: 1.75em;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hardskills_img{
+    border-radius: 20px;
+}
+
+.stack_icons{
+    max-width: 25vw;
+    display: flex;
+}
+
+.stack_icons {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1px;
+}
+
+.icon_img{
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.hardskills{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #212121;
+    border-radius: 20px;
+}
