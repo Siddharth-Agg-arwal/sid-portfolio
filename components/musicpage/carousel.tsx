@@ -1,100 +1,143 @@
-// components/Carousel.tsx
 "use client"
 
-import { useState } from 'react';
-import Image from 'next/image';
-import styles from './carousel.module.css';
-import { motion, AnimatePresence } from 'framer-motion';
+import Image from "next/image"
+import { useState, useRef, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import styles from "./carousel.module.css"
 
-// Define a type for each image object
-interface CarouselImage {
-  src: string;
-  alt?: string;
-}
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
-// Define the props for the Carousel component
-interface CarouselProps {
-  images: CarouselImage[];
-}
+// Create an array with your image paths.
+const musicImages = [
+  "/music_page/joji.png",
+  "/music_page/joji.png",
+  "/music_page/joji.png",
+  "/music_page/joji.png",
+  "/music_page/joji.png",
+  "/music_page/joji.png",
+  "/music_page/coldplay.png",
+  "/music_page/coldplay.png",
+  "/music_page/coldplay.png",
+]
 
-const Carousel: React.FC<CarouselProps> = ({ images }) => {
-  const totalImages = images.length;
-  const [currentIndex, setCurrentIndex] = useState(0);
+// Create a separate array with your music URLs.
+const musicAudios = [
+  "/music_page/kendrick-pride.mp3",
+  "/music_page/kendrick-pride.mp3",
+  "/music_page/kendrick-pride.mp3",
+  "/music_page/kendrick-pride.mp3",
+  "/music_page/kendrick-pride.mp3",
+  "/music_page/kendrick-pride.mp3",
+  "/music_page/coldplay.mp3",
+  "/music_page/coldplay.mp3",
+  "/music_page/coldplay.mp3",
+]
 
-  // Next and previous functions update the current index modulo totalImages.
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalImages);
-  };
+export function CarouselMusic() {
+  // activeSong holds the index of the currently active (playing) song.
+  // Null means no song is active.
+  const [activeSong, setActiveSong] = useState<number | null>(null)
+  // audioRef holds the currently playing audio element.
+  const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalImages) % totalImages);
-  };
+  // Toggle play/stop for a given image.
+  const playSong = (index: number) => {
+    if (activeSong === index) {
+      // If clicking the currently active image, stop the music.
+      setActiveSong(null)
+    } else {
+      // Otherwise, set that song as active.
+      setActiveSong(index)
+    }
+  }
 
-  // Create a rotated version of the images array.
-  // The image at currentIndex comes first.
-  const rotatedImages = [
-    ...images.slice(currentIndex),
-    ...images.slice(0, currentIndex)
-  ];
+  // When activeSong changes, play or stop the corresponding audio.
+  useEffect(() => {
+    if (activeSong !== null) {
+      // Get the audio URL from the musicAudios array.
+      const audioSrc = musicAudios[activeSong]
 
-  // Animation variants for each image.
-  // When exiting, the image fades out, rotates 90° and shifts +50px.
-  // When entering, the image starts with opacity 0, rotated -90° and shifted -50px,
-  // then animates to full opacity, no rotation and x=0.
-  const imageVariants = {
-    initial: { opacity: 0, rotate: -90, x: -50 },
-    animate: { opacity: 1, rotate: 0, x: 0 },
-    exit: { opacity: 0, rotate: 90, x: 50 },
-  };
+      // Pause currently playing audio, if any.
+      if (audioRef.current) {
+        audioRef.current.pause()
+      }
+
+      // Create a new audio instance and play it.
+      const audio = new Audio(audioSrc)
+      audioRef.current = audio
+      audio
+        .play()
+        .catch((error) => {
+          console.error("Error playing audio:", error)
+        })
+    } else {
+      // Stop any currently playing audio.
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current = null
+      }
+    }
+  }, [activeSong])
 
   return (
-    <div className={styles.main1}>
-      <div className={styles.carousel}>
-        {/* This container holds all the images.
-            It does not animate as a whole. */}
-        <div className={styles.carouselContainer}>
-          <AnimatePresence>
-            {rotatedImages.map((img, idx) => (
-              // Using a key that combines currentIndex and idx forces an animation on slide change.
-              <motion.div
-                key={`${currentIndex}-${idx}`}
-                variants={imageVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-                className={styles.carousel_image}
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt || `Image ${idx + 1}`}
-                  width={250}
-                  height={250}
-                  className="rounded-md object-cover"
-                />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-        <div> 
-        <button
-          onClick={prevSlide}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 focus:outline-none"
-          aria-label="Previous Slide"
-        >
-          &#8249;
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 focus:outline-none"
-          aria-label="Next Slide"
-        >
-          &#8250;
-        </button>
+    <Carousel className={styles.carousel_main}>
+      <CarouselContent className={styles.carousel_}>
+        {musicImages.map((src, index) => (
+          <CarouselItem
+            key={index}
+            onClick={() => playSong(index)}
+            className="pl-1 md:basis-1/3"
+          >
+            <div className="p-1">
+              <AnimatePresence mode="wait">
+                {activeSong === index ? (
+                  // Render the "Now Playing" content if this song is active.
+                  <motion.div
+                    key="content"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <div className={styles.carousel_image1}>
+                      <p className="font-bold text-lg">Now Playing</p>
+                      <p>Music image {index + 1}</p>
+                      {/* You can add additional audio controls or content here */}
+                    </div>
+                  </motion.div>
+                ) : (
+                  // Otherwise, render the image.
+                  <motion.div
+                    key="image"
+                    initial={{ opacity: 1 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, y: 60, rotate: 60 }}
+                    transition={{ duration: 0.75 }}
+                  >
+                    <Image
+                      src={src}
+                      alt={`Music image ${index + 1}`}
+                      width={300}
+                      height={299}
+                      className={styles.carousel_image}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <div>
+        <CarouselPrevious />
+        <CarouselNext />
       </div>
-      </div>
-    </div>
-  );
-};
-
-export default Carousel;
+    </Carousel>
+  )
+}

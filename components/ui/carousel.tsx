@@ -160,6 +160,8 @@ const CarouselContent = React.forwardRef<
     <div ref={carouselRef} className="overflow-hidden">
       <div
         ref={ref}
+        // The inline style below sets a 360° rotation and makes the transition slower (3s in this case)
+        style={{ transition: 'transform 0.5s linear', transform: 'rotate(90deg)' }}
         className={cn(
           "flex",
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
@@ -170,6 +172,7 @@ const CarouselContent = React.forwardRef<
     </div>
   )
 })
+
 CarouselContent.displayName = "CarouselContent"
 
 const CarouselItem = React.forwardRef<
@@ -181,6 +184,7 @@ const CarouselItem = React.forwardRef<
   return (
     <div
       ref={ref}
+      style={{ transition: 'transform 0.5s linear'}}
       role="group"
       aria-roledescription="slide"
       className={cn(
