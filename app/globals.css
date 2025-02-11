@@ -27,21 +27,15 @@
 /* Custom Styles */
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
-  overflow-y: auto;
+  max-width: 100%;
+  /* overflow-x: hidden; */
+  /* overflow-y: auto; */
   background-color: #F4F4F2;
-  font-family: quartz !important; /* For testing overriding issues */
 }
 
 body {
-  font-family: quartz !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-@theme{
-  --font-display : OpenSans-R;
 }
 
 * {

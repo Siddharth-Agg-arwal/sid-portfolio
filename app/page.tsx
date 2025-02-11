@@ -11,9 +11,12 @@ export default function Home() {
     <div className={styles.page}>
       <LandingPage />
       <section id="set-music"><MusicPage /></section>
-      <Navbar />
+      <hr></hr>
+      <Navbar/>
       <section id="about-me"><AboutMe /></section>
+      <hr></hr>
       <section id="resume"><Resume /></section>
+      <hr></hr>
     </div>
   );
 }

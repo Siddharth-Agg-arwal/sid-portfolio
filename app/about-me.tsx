@@ -1,4 +1,3 @@
-import Navbar from "@/components/aboutme/navbar";
 import styles from './css/aboutme.module.css';
 import Image from "next/image";
 import Socials from "@/components/aboutme/socials";
