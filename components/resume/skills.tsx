@@ -1,3 +1,4 @@
+import { style } from 'motion/react-client';
 import styles from './skills.module.css'
 import Image from 'next/image'
 
@@ -44,7 +45,7 @@ export default function Skills(){
                     <div>Expertise</div>
                     <div><Image src="/resume/Down.png" alt="down" width={25} height={25} /></div>
                 </div>
-                <div>
+                <div className={styles.expertise_content}>
                     <p>I specialize in building scalable, user-centric applications with a strong focus on performance optimization, UI/UX design, and seamless integrations. My expertise spans full-stack development, AI-driven solutions, and crafting intuitive digital experiences.</p>
                 </div>
             </div>

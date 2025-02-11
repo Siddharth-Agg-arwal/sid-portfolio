@@ -2,10 +2,15 @@
     width : 25vw;
     display: flex;
     flex-direction: column;
+    min-height:100%;
+}
+
+.main hr{
+    margin: 4vh 0 1vh 0;
 }
 
 .heading{
-    margin: 2vh 2vw;
+    margin: 2vh 0vw;
     font-size: 1.75em;
     font-weight: 600;
     display: flex;
@@ -39,4 +44,9 @@
     align-items: center;
     background-color: #212121;
     border-radius: 20px;
+}
+
+.expertise_content{
+    font-size: 1.1em;
+    font-weight: 500;
 }

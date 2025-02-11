@@ -1,0 +1,82 @@
+.main{
+    width : 25vw;
+    display: flex;
+    flex-direction: column;
+    min-height:100%;
+}
+
+.main hr{
+    margin: 4vh 0 1vh 0;
+}
+
+.heading{
+    margin: 2vh 1vw;
+    font-size: 1.75em;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.card{
+    margin : 2vh;
+    padding : 1em;
+    min-width: fit-content;
+    height: 22.5vh;
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #212121;
+    /* border : solid 1px #212121; */
+    border-radius : 20px;
+    color : #F4F4F2;
+}
+
+.title{
+    font-size: 0.85em;
+    opacity: 80%;
+}
+
+.job_title{
+    font-weight: 600;
+}
+
+.upper_card{
+    display: flex;
+    justify-content: space-between;
+}
+
+.dates{
+    color : #212121;
+    padding: 0.5em 1em;
+    min-width: fit-content;
+    background-color: #F4F4F2;
+    border-radius: 20px;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+.grade {
+    font-size: 0.9em;
+}
+
+.softskills {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:5px;
+}
+
+.soft{
+    border : 1px solid #212121;
+    border-radius: 20px;
+    padding: 5px 1.5vw;
+    width: fit-content;
+}
+
+.active{
+    background-color: #233EFF;
+    color : #F4F4F2;
+    border: 0px;
+}

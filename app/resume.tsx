@@ -1,5 +1,6 @@
 import Experience from '@/components/resume/experience'
 import styles from './css/resume.module.css'
+import Education from '@/components/resume/education'
 import Skills from '@/components/resume/skills'
 
 export default function Resume(){
@@ -12,7 +13,7 @@ export default function Resume(){
                 <Skills />
             </div>
             <div className={styles.rightContent}>
-                right
+                <Education />
             </div>
         </div>
     )

@@ -27,7 +27,7 @@ export default function Experience(){
                             <div className={styles.job_title}>{experience.job_title}</div>
                         </div>
                         <div className={styles.lower_card}>
-                            <div className={styles.timeline}><Image src="/resume/lbr.png" alt="lbr" width={250} height={6.5} /></div>
+                            <div className={styles.timeline}><Image src="/resume/lbr.png" alt="lbr" width={300} height={7.2} /></div>
                             <div className={styles.months}>
                                 <div>{experience.month_from}</div>
                                 <div>{experience.month_to}</div>    
