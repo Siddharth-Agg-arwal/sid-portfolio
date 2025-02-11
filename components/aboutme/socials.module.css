@@ -1,0 +1,45 @@
+.social_cards{
+    display: flex;
+    width: 65%;
+}
+
+
+.card p {
+    padding-top: 5px;
+}
+
+.card{
+    margin: 2vw;
+    padding : 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 15vw;
+    border-radius: 20px;
+    height: 18vh;
+    font-size: 10px;
+    text-align: right;
+}
+
+.card1{
+    background-color: #212121;
+    color : #F4F4F2;
+}
+
+
+.card2{
+    background-color: #233EFF;
+    color : #F4F4F2;
+}
+
+
+.card3{
+    background-color: transparent;
+    border:1px solid #212121 ;
+    color : #212121;
+}
+
+.card_upper{
+    display: flex;
+    flex-direction: column;
+}

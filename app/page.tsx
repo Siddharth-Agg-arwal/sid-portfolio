@@ -3,13 +3,15 @@ import styles from "./page.module.css";
 import LandingPage from "./landing-page";
 import MusicPage from "./set-music";
 import AboutMe from "./about-me";
+import Navbar from "@/components/aboutme/navbar";
 
 export default function Home() {
   return (
     <div className={styles.page}>
       <LandingPage />
-      <MusicPage />
-      <AboutMe />
+      <section id="set-music"><MusicPage /></section>
+      <Navbar />
+      <section id="about-me"><AboutMe /></section>
     </div>
   );
 }
