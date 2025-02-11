@@ -1,0 +1,32 @@
+.main{
+    height : 100vh;
+    min-width : 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10vh;
+    font-family: Exo2-R;
+}
+
+.leftContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width : 30%;
+}
+
+
+.middleContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width : 30%;
+}
+
+
+.rightContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width : 30%;
+}

@@ -4,6 +4,7 @@ import LandingPage from "./landing-page";
 import MusicPage from "./set-music";
 import AboutMe from "./about-me";
 import Navbar from "@/components/aboutme/navbar";
+import Resume from "./resume";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <section id="set-music"><MusicPage /></section>
       <Navbar />
       <section id="about-me"><AboutMe /></section>
+      <section id="resume"><Resume /></section>
     </div>
   );
 }

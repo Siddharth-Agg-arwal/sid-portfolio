@@ -3,7 +3,8 @@
     width : 100%;
     display: flex;
     justify-content: space-around;
-    padding-top: 5vh;
+    padding-top: 10vh;
+    font-family: Exo2-R;
 }
 
 .leftComp{
@@ -50,7 +51,7 @@
 }
 
 .intro{
-    padding: 10px;
+    padding: 1vw 2vw 2vw 2vw;
     border-radius: 20px;
     background-color: transparent;
     border:1px solid #212121 ;
