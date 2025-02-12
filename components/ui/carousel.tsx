@@ -160,6 +160,8 @@ const CarouselContent = React.forwardRef<
     <div ref={carouselRef} className="overflow-hidden">
       <div
         ref={ref}
+        // The inline style below sets a 360° rotation and makes the transition slower (3s in this case)
+        style={{ transition: 'transform 0.5s linear', transform: 'rotate(90deg)' }}
         className={cn(
           "flex",
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
@@ -182,7 +184,7 @@ const CarouselItem = React.forwardRef<
   return (
     <div
       ref={ref}
-      // style={{ transition: 'transform 0.5s linear'}}
+      style={{ transition: 'transform 0.5s linear'}}
       role="group"
       aria-roledescription="slide"
       className={cn(
@@ -211,7 +213,7 @@ const CarouselPrevious = React.forwardRef<
         "absolute  h-8 w-8 rounded-full",
         orientation === "horizontal"
           ? "-left-12 top-1/2 -translate-y-1/2"
-          : "-top-12 left-1/2 -translate-x-1/2",
+          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
       disabled={!canScrollPrev}
@@ -240,7 +242,7 @@ const CarouselNext = React.forwardRef<
         "absolute h-8 w-8 rounded-full",
         orientation === "horizontal"
           ? "-right-12 top-1/2 -translate-y-1/2"
-          : "-bottom-12 left-1/2 -translate-x-1/2",
+          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
       disabled={!canScrollNext}
@@ -253,8 +255,6 @@ const CarouselNext = React.forwardRef<
   )
 })
 CarouselNext.displayName = "CarouselNext"
-
-
 
 export {
   type CarouselApi,

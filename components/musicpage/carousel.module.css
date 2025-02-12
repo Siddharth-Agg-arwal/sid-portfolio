@@ -11,8 +11,8 @@
 .carousel_{
     display: flex;
     /* Example carousel container CSS */
-    /* overflow-x: auto; /\Allow horizontal scrolling */
-    /* scroll-snap-type: x mandatory; Optional: For snap scrolling */
+    /* overflow-x: hidden; */
+    scroll-snap-type: x mandatory;
 }
 
 .carousel{
