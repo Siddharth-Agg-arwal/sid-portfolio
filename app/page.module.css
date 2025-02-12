@@ -13,7 +13,10 @@
   min-height: 100svh;
   padding: 30px;
   gap: 64px;
+  max-width: 100%;
   font-family: var(--font-geist-sans);
+  max-width: 100%;
+  /* overflow-x: hidden; */
 }
 
 .navbar{

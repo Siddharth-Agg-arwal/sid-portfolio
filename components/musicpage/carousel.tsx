@@ -88,51 +88,49 @@ export function CarouselMusic() {
   return (
     <Carousel className={styles.carousel_main}>
       <CarouselContent className={styles.carousel_}>
-        {musicImages.map((src, index) => (
-          <CarouselItem
-            key={index}
-            onClick={() => playSong(index)}
-            className="pl-1 md:basis-1/3"
+      {musicImages.map((src, index) => (
+  <CarouselItem
+    key={`carousel-item-${index}`}
+    onClick={() => playSong(index)}
+    className="pl-1 md:basis-1/3"
+  >
+    <div className="p-1">
+      <AnimatePresence mode="wait">
+        {activeSong === index ? (
+          <motion.div
+            key={`content-${index}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <div className="p-1">
-              <AnimatePresence mode="wait">
-                {activeSong === index ? (
-                  // Render the "Now Playing" content if this song is active.
-                  <motion.div
-                    key="content"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <div className={styles.carousel_image1}>
-                      <p className="font-bold text-lg">Now Playing</p>
-                      <p>Music image {index + 1}</p>
-                      {/* You can add additional audio controls or content here */}
-                    </div>
-                  </motion.div>
-                ) : (
-                  // Otherwise, render the image.
-                  <motion.div
-                    key="image"
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, y: 60, rotate: 60 }}
-                    transition={{ duration: 0.75 }}
-                  >
-                    <Image
-                      src={src}
-                      alt={`Music image ${index + 1}`}
-                      width={300}
-                      height={300}
-                      className={styles.carousel_image}
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+            <div className={styles.carousel_image1}>
+              <p className="font-bold text-lg">Now Playing</p>
+              <p>Music image {index + 1}</p>
             </div>
-          </CarouselItem>
-        ))}
+          </motion.div>
+        ) : (
+          <motion.div
+            key={`image-${index}`}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, y: 60, rotate: 60 }}
+            transition={{ duration: 0.75 }}
+          >
+            <Image
+              src={src}
+              alt={`Music image ${index + 1}`}
+              width={300}
+              height={300}
+              className={styles.carousel_image}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  </CarouselItem>
+))}
+
       </CarouselContent>
       <div>
         <CarouselPrevious />

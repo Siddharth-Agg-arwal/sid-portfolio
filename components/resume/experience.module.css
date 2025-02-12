@@ -1,5 +1,8 @@
 .main{
     min-height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .heading{
@@ -12,7 +15,7 @@
 }
 
 .card{
-    margin : 2vh 0;
+    margin : 2vh 0 0 0;
     padding : 1em;
     min-width: fit-content;
     max-width: 35vw;
