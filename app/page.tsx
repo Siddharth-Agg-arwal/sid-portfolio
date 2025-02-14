@@ -5,6 +5,7 @@ import MusicPage from "./set-music";
 import AboutMe from "./about-me";
 import Navbar from "@/components/aboutme/navbar";
 import Resume from "./resume";
+import Works from "./works";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <section id="about-me"><AboutMe /></section>
       <hr></hr>
       <section id="resume"><Resume /></section>
+      <section id="works"><Works /></section>
       <hr></hr>
     </div>
   );
