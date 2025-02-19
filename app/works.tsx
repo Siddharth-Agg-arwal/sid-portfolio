@@ -7,60 +7,76 @@ import styles from './css/works.module.css';  // Import our CSS module
 
 const projects = [
 {
-    title: 'Matthias Leidinger',
+    title: 'Plexus',
     description:
     'Originally hailing from Austria, Berlin-based photographer Matthias Leindinger is a young creative brimming with talent and ideas.',
     src: 'rock.jpg',
     link: '/works/plexus.png',
-    color: '#233EFF',
+    color: '#F4F4F2',
+    bordercolor : '#212121',
+    textcolor : "#212121",
 },
 {
-    title: 'Clément Chapillon',
+    title: 'Acadally',
     description:
     'This is a story on the border between reality and imaginary, about the contradictory feelings that the insularity of a rocky, arid, and wild territory provokes”—so French photographer Clément.',
     src: 'tree.jpg',
     link: '/works/acadally.png',
     color: '#212121',
+    bordercolor : '#000000',
+    textcolor : "#F4F4F2",
+
 },
 {
-    title: 'Zissou',
+    title: 'Nyte',
     description:
     'Though he views photography as a medium for storytelling, Zissou’s images don’t insist on a narrative. Both crisp and ethereal.',
     src: 'water.jpg',
     link: '/works/nyte.png',
     color: '#233EFF',
+    bordercolor : '#233eff',
+    textcolor : "#F4F4F2",
+
 },
 {
-    title: 'Mark Rammers',
+    title: 'Mystiqode',
     description:
     'Dutch photographer Mark Rammers has shared with IGNANT the first chapter of his latest photographic project, ‘all over again’—captured while in residency at Hektor, an old farm in Los Valles, Lanzarote.',
     src: 'cactus.jpg',
     link: '/works/mystiqode.png',
-    color: '#212121',
+    color: '#F4f4f2',
+    bordercolor : '#212121',
+    textcolor : "#212121",
 },
 {
-    title: 'Mark Rammers',
+    title: 'HackOWASP 6.0',
     description:
     'Dutch photographer Mark Rammers has shared with IGNANT the first chapter of his latest photographic project, ‘all over again’—captured while in residency at Hektor, an old farm in Los Valles, Lanzarote.',
     src: 'cactus.jpg',
     link: '/works/hacko.png',
     color: '#212121',
+    bordercolor : '#212121',
+    textcolor : "#f4f4f2",
 },
 {
-    title: 'Mark Rammers',
+    title: 'Prabhav\'s Portfolio',
     description:
     'Dutch photographer Mark Rammers has shared with IGNANT the first chapter of his latest photographic project, ‘all over again’—captured while in residency at Hektor, an old farm in Los Valles, Lanzarote.',
     src: 'cactus.jpg',
     link: '/works/prabhav.png',
-    color: '#212121',
+    color: '#233eff',
+    bordercolor : '#233eff',
+    textcolor : "#f4f4f2",
 },
 {
-    title: 'Mark Rammers',
+    title: 'Flow Cellutions',
     description:
     'Dutch photographer Mark Rammers has shared with IGNANT the first chapter of his latest photographic project, ‘all over again’—captured while in residency at Hektor, an old farm in Los Valles, Lanzarote.',
     src: 'cactus.jpg',
     link: '/works/flowcellutions.png',
-    color: '#212121',
+    color: '#f4f4f2',
+    bordercolor : '#212121',
+    textcolor : "#212121",
 },
 ];
 
@@ -95,10 +111,12 @@ return (
                 src={project.src}
                 title={project.title}
                 color={project.color}
+                bordercolor={project.bordercolor}
                 description={project.description}
                 progress={scrollYProgress}
-                range={[i * 0.25, 1]}
+                range={[i * 0.15, 1]}
                 targetScale={targetScale}
+                textcolor={project.textcolor}
             />
             );
         })}
@@ -125,6 +143,8 @@ color: string;
 progress: MotionValue<number>;
 range: [number, number];
 targetScale: number;
+bordercolor: string;
+textcolor: string;
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -137,6 +157,8 @@ export const Card: React.FC<CardProps> = ({
     progress,
     range,
     targetScale,
+    bordercolor,
+    textcolor
 }) => {
     const container = useRef(null);
     const { scrollYProgress } = useScroll({
@@ -152,6 +174,8 @@ return (
     <motion.div
     style={{
         backgroundColor: color,
+        border : `1px solid ${bordercolor}`,
+        color : textcolor,
         scale,
         top: `calc(-5vh + ${i * 25}px)`,
     }}
@@ -184,8 +208,8 @@ return (
             <Image
             src={url}
             alt="image"
-            height={500}
-            width={500}
+            height={400}
+            width={400}
             className={styles.cardImage}
             />
         </motion.div>
