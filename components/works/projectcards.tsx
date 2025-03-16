@@ -8,7 +8,8 @@ import React from 'react';
 import ProjectPopup from './projectpopup';
 
 const projects = [
-{
+{   
+    index : 0,
     title: 'Plexus',
     description:
     'Originally hailing from Austria, Berlin-based photographer Matthias Leindinger is a young creative brimming with talent and ideas.',
@@ -18,7 +19,8 @@ const projects = [
     bordercolor : '#212121',
     textcolor : "#212121",
 },
-{
+{   
+    index : 1,
     title: 'Acadally',
     description:
     'This is a story on the border between reality and imaginary, about the contradictory feelings that the insularity of a rocky, arid, and wild territory provokes”—so French photographer Clément.',
@@ -30,6 +32,7 @@ const projects = [
 
 },
 {
+    index : 2,
     title: 'Nyte',
     description:
     'Though he views photography as a medium for storytelling, Zissou’s images don’t insist on a narrative. Both crisp and ethereal.',
@@ -41,6 +44,7 @@ const projects = [
 
 },
 {
+    index : 3,
     title: 'Mystiqode',
     description:
     'Dutch photographer Mark Rammers has shared with IGNANT the first chapter of his latest photographic project, ‘all over again’—captured while in residency at Hektor, an old farm in Los Valles, Lanzarote.',
@@ -51,6 +55,7 @@ const projects = [
     textcolor : "#212121",
 },
 {
+    index : 4,
     title: 'HackOWASP 6.0',
     description:
     'Dutch photographer Mark Rammers has shared with IGNANT the first chapter of his latest photographic project, ‘all over again’—captured while in residency at Hektor, an old farm in Los Valles, Lanzarote.',
@@ -61,6 +66,7 @@ const projects = [
     textcolor : "#f4f4f2",
 },
 {
+    index : 5,
     title: 'Prabhav\'s Portfolio',
     description:
     'Dutch photographer Mark Rammers has shared with IGNANT the first chapter of his latest photographic project, ‘all over again’—captured while in residency at Hektor, an old farm in Los Valles, Lanzarote.',
@@ -71,6 +77,7 @@ const projects = [
     textcolor : "#f4f4f2",
 },
 {
+    index : 6,
     title: 'Flow Cellutions',
     description:
     'Dutch photographer Mark Rammers has shared with IGNANT the first chapter of his latest photographic project, ‘all over again’—captured while in residency at Hektor, an old farm in Los Valles, Lanzarote.',
@@ -134,8 +141,9 @@ export default function ProjectCards(): JSX.Element {
           {/* Conditionally render the popup when a project is selected */}
           {selectedProject && (
             <ProjectPopup
-              project={selectedProject}
-              onClose={closePopup}
+                // index = currentIndex
+                project={selectedProject}
+                onClose={closePopup}
             />
           )}
         </main>
