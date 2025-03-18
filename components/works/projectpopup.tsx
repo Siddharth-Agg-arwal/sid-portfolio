@@ -35,16 +35,16 @@ const ProjectPopup: React.FC<ProjectPopupProps> = ({ project, onClose }) => {
     const currPopup = popupInformation[project.index];
 
     return (
-        <div className={styles.popupOverlay}>
+            <div className={styles.popupOverlay} data-lenis-prevent>
             <div className={styles.leftSection}>
-                {/* Pass onClose to PopupLeftSection */}
                 <PopupLeftSection index={project.index} onClose={onClose} />
             </div>
             <div className={styles.rightSection}>
                 <PopupRightSection index={project.index} />
             </div>
-        </div>
-    );
+            </div>
+        );
+        
 };
 
 export default ProjectPopup;

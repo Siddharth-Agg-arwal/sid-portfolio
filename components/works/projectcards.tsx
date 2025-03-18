@@ -1,11 +1,13 @@
 "use client";
 import { ReactLenis } from 'lenis/react';
 import { useTransform, motion, useScroll, MotionValue } from 'framer-motion';
-import { JSX, useRef, useState} from 'react';
+import { JSX, useRef, useState, useEffect} from 'react';
 import Image from 'next/image';
 import styles from './projectcards.module.css';
 import React from 'react';
 import ProjectPopup from './projectpopup';
+import { useLenis } from 'lenis/react';
+
 
 const projects = [
 {   
@@ -90,6 +92,8 @@ const projects = [
 ];
 
 export default function ProjectCards(): JSX.Element {
+
+  const lenis = useLenis();
     const container = useRef(null);
     // Instead of a boolean, we store the project that was clicked.
     const [selectedProject, setSelectedProject] = useState<null | typeof projects[0]>(null);
@@ -101,11 +105,29 @@ export default function ProjectCards(): JSX.Element {
     function closePopup() {
       setSelectedProject(null);
     }
-  
-    const { scrollYProgress } = useScroll({
-      target: container,
-      offset: ['start start', 'end end'],
-    });
+
+    useEffect(() => {
+      if (selectedProject) {
+        lenis?.stop(); // explicitly stops Lenis scrolling
+        document.body.style.overflow = 'hidden'; // extra protection
+        document.documentElement.style.overflow = 'hidden';
+      } else {
+        lenis?.start(); // restarts Lenis scrolling
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+      }
+    
+      return () => {
+        lenis?.start();
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+      };
+    }, [selectedProject, lenis]);
+    
+      const { scrollYProgress } = useScroll({
+        target: container,
+        offset: ['start start', 'end end'],
+      });
   
     return (
       <ReactLenis root>
