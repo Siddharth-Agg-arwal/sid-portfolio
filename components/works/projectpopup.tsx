@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './projectpopup.module.css';
 import PopupLeftSection from './popupleftsection';
+import PopupRightSection from './popuprightsection';
 
 interface ProjectPopupProps {
     project: {
@@ -37,13 +38,11 @@ const ProjectPopup: React.FC<ProjectPopupProps> = ({ project, onClose }) => {
         <div className={styles.popupOverlay}>
             <div className={styles.leftSection}>
                 {/* Pass onClose to PopupLeftSection */}
-                <PopupLeftSection onClose={onClose} />
+                <PopupLeftSection index={project.index} onClose={onClose} />
             </div>
-            <div className={styles.rightSection}></div>
-
-            <button onClick={onClose}>Close</button>
-            <h2>{project.title}</h2>
-            <p>{project.description}</p>
+            <div className={styles.rightSection}>
+                <PopupRightSection index={project.index} />
+            </div>
         </div>
     );
 };
