@@ -254,6 +254,10 @@ interface CardProps {
                   height={400}
                   width={400}
                   className={styles.cardImage}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onClick();
+                  }}
                 />
               </motion.div>
             </div>
