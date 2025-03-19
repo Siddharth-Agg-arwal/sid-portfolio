@@ -14,7 +14,8 @@ const PopupRightSection: React.FC<PopupRightSectionProps> = ({ index }) => {
             image2: "/works/plexus.png",
             image3: "/works/plexus.png",
             description: "Sample description",
-            organisationLink: "https://www.example.com"
+            organisationLink: "https://www.example.com",
+            problems : [],
         },
         {
             title: "Project 2",
@@ -22,7 +23,8 @@ const PopupRightSection: React.FC<PopupRightSectionProps> = ({ index }) => {
             image2: "/works/project2.png",
             image3: "/works/project2.png",
             description: "Another sample description",
-            organisationLink: "https://www.example.com"
+            organisationLink: "https://www.example.com",
+            problems : [],
         },
         {
             title: "Project 3",
@@ -30,7 +32,8 @@ const PopupRightSection: React.FC<PopupRightSectionProps> = ({ index }) => {
             image2: "/works/project3.png",
             image3: "/works/project3.png",
             description: "Yet another description",
-            organisationLink: "https://www.example.com"
+            organisationLink: "https://www.example.com",
+            problems : [],
         },
     ];
 
@@ -40,6 +43,15 @@ const PopupRightSection: React.FC<PopupRightSectionProps> = ({ index }) => {
         <div className={styles.rightSectionContent}>
             <div className={styles.projectImage}>
                 <img src={project.image1} alt={project.title} />
+                <div className={styles.projectIntro}>
+                    {project.description}
+                    <ul>
+                        {project.problems.map((problem, i) => (
+                            <li key={i}>{problem}</li>
+                        ))}
+                    </ul>
+                </div>
+                
             </div>
             <div className={styles.projectImage}>
                 <img src={project.image2} alt={project.title} />

@@ -14,7 +14,7 @@ const PopupLeftSection: React.FC<PopupLeftSectionProps> = ({ index, onClose }) =
             title: "Plexus",
             description: "In dolor est. dui. quam lorem. scelerisque elit lobortis, in tincidunt facilisis commodo non lobortis, ac Nunc tincidunt quis adipiscing eu risus viverra ex non placerat Nunc Vestibulum odio facilisis hendrerit tincidunt.",
             techStack: ["React", "Node", "Express", "MongoDB"],
-            organisation: "Example",
+            organisation: "Pixel Canine Design Studio",
             organisationLink: "https://www.example.com"
         },
         {
@@ -57,9 +57,9 @@ const PopupLeftSection: React.FC<PopupLeftSectionProps> = ({ index, onClose }) =
                 <div className={styles.organisation}>
                     <div className={styles.organisation_title}>Organisation</div>
                     <div className={styles.organisation_name}>
-                        <a href={project.organisationLink} target="_blank" rel="noopener noreferrer">
+                        {/* <a href={project.organisationLink} target="_blank" rel="noopener noreferrer"> */}
                             {project.organisation}
-                        </a>
+                        {/* </a> */}
                     </div>
                 </div>
             </div>
