@@ -13,7 +13,7 @@ export default function Home() {
     <div className={styles.page}>
       {/* <ProjectPopup project={selectedProject}
                 onClose={closePopup}/> */}
-      <section id="works"><Works /></section>
+      {/* <section id="works"><Works /></section> */}
 
       <LandingPage />
       <section id="set-music" className={styles.music}>

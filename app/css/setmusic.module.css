@@ -19,3 +19,17 @@
     justify-content:flex-end;
     align-items: flex-end;
 }
+
+.engraved {
+    opacity: 0.15;
+    position: absolute;
+    top : 5vh;
+    font-size: 7.5rem;
+    font-family: Exo2-R;
+    background-color: rgb(33, 33, 33);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: rgba(245,245,245,0.5) 3px 5px 1px;
+}

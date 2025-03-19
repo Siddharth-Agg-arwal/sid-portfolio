@@ -13,7 +13,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
-// Create an array with your image paths.
 const musicImages = [
   "/music_page/joji.png",
   "/music_page/joji.png",
@@ -26,7 +25,6 @@ const musicImages = [
   "/music_page/coldplay.png",
 ]
 
-// Create a separate array with your music URLs.
 const musicAudios = [
   "/music_page/kendrick-pride.mp3",
   "/music_page/kendrick-pride.mp3",
@@ -40,50 +38,49 @@ const musicAudios = [
 ]
 
 export function CarouselMusic() {
-  // activeSong holds the index of the currently active (playing) song.
-  // Null means no song is active.
   const [activeSong, setActiveSong] = useState<number | null>(null)
-  // audioRef holds the currently playing audio element.
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  // Toggle play/stop for a given image.
   const playSong = (index: number) => {
     if (activeSong === index) {
-      // If clicking the currently active image, stop the music.
       setActiveSong(null)
     } else {
-      // Otherwise, set that song as active.
       setActiveSong(index)
     }
   }
 
-  // When activeSong changes, play or stop the corresponding audio.
   useEffect(() => {
     if (activeSong !== null) {
-      // Get the audio URL from the musicAudios array.
       const audioSrc = musicAudios[activeSong]
 
-      // Pause currently playing audio, if any.
       if (audioRef.current) {
         audioRef.current.pause()
       }
 
-      // Create a new audio instance and play it.
       const audio = new Audio(audioSrc)
       audioRef.current = audio
-      audio
-        .play()
-        .catch((error) => {
-          console.error("Error playing audio:", error)
-        })
-    } else {
-      // Stop any currently playing audio.
-      if (audioRef.current) {
-        audioRef.current.pause()
-        audioRef.current = null
-      }
+      audio.play().catch((error) => console.error("Error playing audio:", error))
+    } else if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current = null
     }
   }, [activeSong])
+
+  // Functionality for Previous Song
+  const handlePreviousSong = () => {
+    setActiveSong((prev) => {
+      if (prev === null || prev === 0) return musicImages.length - 1
+      return prev - 1
+    })
+  }
+
+  // Functionality for Next Song
+  const handleNextSong = () => {
+    setActiveSong((prev) => {
+      if (prev === null || prev === musicImages.length - 1) return 0
+      return prev + 1
+    })
+  }
 
   return (
     <Carousel className={styles.carousel_main}>
@@ -97,7 +94,6 @@ export function CarouselMusic() {
             <div className="p-1">
               <AnimatePresence mode="wait">
                 {activeSong === index ? (
-                  // Render the "Now Playing" content if this song is active.
                   <motion.div
                     key="content"
                     initial={{ opacity: 0 }}
@@ -108,21 +104,19 @@ export function CarouselMusic() {
                     <div className={styles.carousel_image1}>
                       <p className="font-bold text-lg">Now Playing</p>
                       <p>Music image {index + 1}</p>
-                      {/* You can add additional audio controls or content here */}
                     </div>
                   </motion.div>
                 ) : (
-                  // Otherwise, render the image.
                   <motion.div
                     key="image"
                     initial={{ opacity: 1 }}
                     animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, y: 60, rotate: 60 }}
-                    transition={{ duration: 0.75 }}
+                    exit={{ opacity: 1, rotate: 360 }}
+                    transition={{ duration:10 }}
                   >
                     <Image
                       src={src}
-                      alt={`Music image ${index + 1}`}
+                      alt={`Music image ${index +1}`}
                       width={300}
                       height={300}
                       className={styles.carousel_image}
@@ -134,9 +128,34 @@ export function CarouselMusic() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div>
+
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        {/* Previous Song Button */}
+        <button style={{ all: 'unset', cursor: 'pointer' }} onClick={handlePreviousSong}>
+          <div className={styles.prevCover}>
+            <Image src="/music_page/prevsong.png" alt="prev" width={25} height={25} />
+          </div>
+        </button>
+
+        {/* Carousel Previous */}
         <CarouselPrevious />
+
+        {/* Play/Pause Button (optional to implement separately) */}
+        <button style={{ all: 'unset', cursor: 'pointer' }} onClick={() => activeSong !== null ? setActiveSong(null) : setActiveSong(0)}>
+          <div className={styles.prevCover}>
+            <Image src="/music_page/play.png" alt="play" width={25} height={25} />
+          </div>
+        </button>
+
+        {/* Carousel Next */}
         <CarouselNext />
+
+        {/* Next Song Button */}
+        <button style={{ all: 'unset', cursor: 'pointer' }} onClick={handleNextSong}>
+          <div className={styles.prevCover}>
+            <Image src="/music_page/nextsong.png" alt="next" width={25} height={25} />
+          </div>
+        </button>
       </div>
     </Carousel>
   )
