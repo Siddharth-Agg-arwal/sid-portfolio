@@ -14,25 +14,25 @@ interface ProjectPopupProps {
 }
 
 const ProjectPopup: React.FC<ProjectPopupProps> = ({ project, onClose }) => {
-    const popupInformation = [
-        {
-            title: "Project 1",
-            description: "Description of Project 1",
-            link: "https://www.example.com",
-        },
-        {
-            title: "Project 2",
-            description: "Description of Project 2",
-            link: "https://www.example.com",
-        },
-        {
-            title: "Project 3",
-            description: "Description of Project 3",
-            link: "https://www.example.com",
-        },
-    ];
+    // const popupInformation = [
+    //     {
+    //         title: "Project 1",
+    //         description: "Description of Project 1",
+    //         link: "https://www.example.com",
+    //     },
+    //     {
+    //         title: "Project 2",
+    //         description: "Description of Project 2",
+    //         link: "https://www.example.com",
+    //     },
+    //     {
+    //         title: "Project 3",
+    //         description: "Description of Project 3",
+    //         link: "https://www.example.com",
+    //     },
+    // ];
 
-    const currPopup = popupInformation[project.index];
+    // const currPopup = popupInformation[project.index];
 
     return (
             <div className={styles.popupOverlay} data-lenis-prevent>
