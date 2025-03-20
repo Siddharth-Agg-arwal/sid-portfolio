@@ -163,7 +163,7 @@ const CarouselContent = React.forwardRef<
       <div
         ref={ref}
         // The inline style below sets a 360° rotation and makes the transition slower (3s in this case)
-        style={{ transition: 'transform 0.5s linear', transform: 'rotate(90deg)' }}
+        style={{ transition: 'transform 0.5s linear' }}
         className={cn(
           "flex",
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
