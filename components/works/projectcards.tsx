@@ -184,7 +184,6 @@ interface CardProps {
     i,
     title,
     description,
-    src,
     url,
     color,
     progress,

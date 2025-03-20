@@ -1,9 +1,8 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import * as Matter from "matter-js";
-import styles from './content.module.css'
+import styles from './content.module.css';
 
-// Import multiple SVGs
 const shapes = [
   "/landing_page/svgs/S.svg",
   "/landing_page/svgs/I.svg",
@@ -17,11 +16,12 @@ const shapes = [
 ];
 
 const IMAGE_WIDTH = 180;
-const IMAGE_HEIGHT = 180;
 
 export default function RightComponent() {
   const sceneRef = useRef<HTMLDivElement>(null);
-  const [canvasSize, setCanvasSize] = useState({ width: 900, height: 600 });
+
+  // Memoize the canvasSize object to ensure it doesn't change on every render
+  const canvasSize = useMemo(() => ({ width: 900, height: 600 }), []);
 
   useEffect(() => {
     if (typeof window === "undefined" || !sceneRef.current) return;
@@ -75,9 +75,6 @@ export default function RightComponent() {
 
     // Function to add an image-based physics body
     const createImageBody = (img: HTMLImageElement, x: number, y: number) => {
-      const scaleX = IMAGE_WIDTH / img.width;
-      const scaleY = IMAGE_HEIGHT / img.height;
-
       const body = Matter.Bodies.circle(x, y, IMAGE_WIDTH / 2.5, {
         restitution: 0.6,
         friction: 0.1,
@@ -98,7 +95,7 @@ export default function RightComponent() {
     const startSimulation = async () => {
       try {
         const images = await preloadImages();
-        const positions = Array.from({ length: 10 }).map(() => ({
+        const positions = Array.from({ length: shapes.length }).map(() => ({
           x: Math.random() * (width - 200) + 100,
           y: Math.random() * 100,
         }));
@@ -114,21 +111,18 @@ export default function RightComponent() {
       }
     };
 
+    // Add mouse interaction
     const mouse = Matter.Mouse.create(render.canvas);
     const mouseConstraint = Matter.MouseConstraint.create(engine, {
-      mouse: mouse,
+      mouse,
       constraint: {
         stiffness: 0.2,
-        render: {
-          visible: false,
-        },
+        render: { visible: false },
       },
     });
 
     Matter.World.add(world, mouseConstraint);
     render.mouse = mouse; // Associate mouse with the render
-
-
 
     startSimulation();
 

@@ -1,4 +1,3 @@
-import { style } from 'motion/react-client';
 import styles from './skills.module.css'
 import Image from 'next/image'
 

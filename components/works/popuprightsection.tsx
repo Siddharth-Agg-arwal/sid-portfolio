@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './projectpopup.module.css';
-import Image from 'next/image';
 
 interface PopupRightSectionProps {
     index: number;

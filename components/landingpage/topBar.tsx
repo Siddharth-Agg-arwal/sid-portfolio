@@ -15,7 +15,7 @@ export default function TopBar() {
             <p className={styles.name}>Siddharth&nbsp;Aggarwal</p>
             </div>
             <div className={styles.leftContent}>
-                Developer's Portfolio
+                Developer&apos;s Portfolio
             </div>
         </div>
     )

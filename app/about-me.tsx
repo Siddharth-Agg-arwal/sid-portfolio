@@ -13,7 +13,7 @@ export default function AboutMe(){
                     <p className={styles.heading}>Introduction</p>
                     <div className={styles.intro}>
                         <p className={styles.intro_heading}>A Developer Designer based in Chandigarh</p>
-                        <p className={styles.into_content}>Hey, I'm Siddharth Aggarwal, a tech enthusiast and problem solver with a passion for innovation. I love tackling complex challenges, designing intuitive solutions, and constantly learning new things. Whether it's building products, optimizing systems, or brainstorming creative ideas, I thrive in dynamic environments and enjoy collaborating with like-minded people to make an impact!</p>
+                        <p className={styles.into_content}>Hey, I&apos;m Siddharth Aggarwal, a tech enthusiast and problem solver with a passion for innovation. I love tackling complex challenges, designing intuitive solutions, and constantly learning new things. Whether it&apos;s building products, optimizing systems, or brainstorming creative ideas, I thrive in dynamic environments and enjoy collaborating with like-minded people to make an impact!</p>
                     </div>
                 </div>
                 <hr className={styles.intro_breaker}></hr>

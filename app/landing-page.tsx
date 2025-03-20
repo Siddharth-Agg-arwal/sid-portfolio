@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "./css/landingpage.module.css";
 import TopBar from "@/components/landingpage/topBar";
 import RightComponent from "@/components/landingpage/rightComponent";

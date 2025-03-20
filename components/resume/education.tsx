@@ -26,7 +26,7 @@ export default function Education(){
             </div>
             <div className={styles.softskills}>
                 {softskill.map((skill) => (
-                    <div className={`${styles.soft} ${
+                    <div key={1} className={`${styles.soft} ${
                         skill.label === "active" ? styles.active : styles.passive
                     }`}>#{skill.name}</div>
                 ))}
