@@ -89,7 +89,18 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    /* background-color: black; */
-    /* border-radius: 20px; */
-    /* border: 1px solid black; */
+}
+
+.currentlyPlaying{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 2rem;
+    font-size: 1.5rem;
+    width : fit-content;
+    color : #233EFF;
+    font-family: Exo2-R;
 }

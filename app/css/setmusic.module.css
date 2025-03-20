@@ -23,7 +23,7 @@
 .engraved {
     opacity: 0.15;
     position: absolute;
-    top : 5vh;
+    top : 0vh;
     font-size: 7.5rem;
     font-family: Exo2-R;
     background-color: rgb(33, 33, 33);

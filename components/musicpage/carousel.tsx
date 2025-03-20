@@ -11,6 +11,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel"
 
 const musicImages = [
@@ -53,108 +54,90 @@ const songName = [
 ]
 
 export function CarouselMusic() {
-  const [activeSong, setActiveSong] = useState<number | null>(null)
-  const [isPlaying, setIsPlaying] = useState<boolean>(false)
-  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const [activeSong, setActiveSong] = useState<number | null>(null);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  
+  const [api, setApi] = useState<CarouselApi | null>(null);
 
-  // Play or pause song based on current state
+  // Set default index to 1 on initial render
+  useEffect(() => {
+    if (api) {
+      api.scrollTo(1, false); // Set initial position without animation
+    }
+  }, [api]);
+
   const playSong = (index: number) => {
     if (activeSong === index && isPlaying) {
-      setIsPlaying(false)
+      setIsPlaying(false);
     } else {
-      setActiveSong(index)
-      setIsPlaying(true)
+      setActiveSong(index);
+      setIsPlaying(true);
+      api?.scrollTo(index);
     }
-  }
+  };
 
-  // Handle audio playback
   useEffect(() => {
     if (activeSong !== null && isPlaying) {
-      const audioSrc = musicAudios[activeSong]
-
-      if (audioRef.current) {
-        audioRef.current.pause()
-      }
-
-      const audio = new Audio(audioSrc)
-      audioRef.current = audio
-      audio.play().catch((error) => console.error("Error playing audio:", error))
+      if (audioRef.current) audioRef.current.pause();
+      const audio = new Audio(musicAudios[activeSong]);
+      audioRef.current = audio;
+      audio.play().catch(console.error);
     } else if (audioRef.current) {
-      audioRef.current.pause()
+      audioRef.current.pause();
     }
-  }, [activeSong, isPlaying])
+  }, [activeSong, isPlaying]);
 
-  // Previous song handler
   const handlePreviousSong = () => {
     setActiveSong((prev) => {
-      const newIndex = prev === null || prev === 0 ? musicImages.length - 1 : prev - 1
-      setIsPlaying(true)
-      return newIndex
-    })
-  }
+      const newIndex = prev === null || prev === 0 ? musicImages.length -1 : prev -1;
+      api?.scrollTo(newIndex);
+      setIsPlaying(true);
+      return newIndex;
+    });
+  };
 
-  // Next song handler
   const handleNextSong = () => {
     setActiveSong((prev) => {
-      const newIndex = prev === null || prev === musicImages.length -1 ? 0 : prev +1
-      setIsPlaying(true)
-      return newIndex
-    })
-  }
+      const newIndex = prev === null || prev === musicImages.length -1 ? 0 : prev +1;
+      api?.scrollTo(newIndex);
+      setIsPlaying(true);
+      return newIndex;
+    });
+  };
 
-  // Play/Pause Button handler
   const togglePlayPause = () => {
     if (activeSong === null) {
-      setActiveSong(0)
-      setIsPlaying(true)
+      setActiveSong(0);
+      api?.scrollTo(0);
+      setIsPlaying(true);
     } else {
-      setIsPlaying((prev) => !prev)
+      setIsPlaying(prev => !prev);
+      api?.scrollTo(activeSong);
     }
-  }
+  };
+
+  const marqueeVariants = {
+    animate: {
+      x: ["100%", "-100%"],
+      transition: { x: { repeat: Infinity, duration:15, ease:"linear" } },
+    },
+  };
 
   return (
-    <Carousel className={styles.carousel_main}>
+    <Carousel className={styles.carousel_main} setApi={setApi}>
       <CarouselContent className={styles.carousel_}>
         {musicImages.map((src, index) => (
-          <CarouselItem
-            key={index}
-            onClick={() => playSong(index)}
-            className="pl-1 md:basis-1/3"
-          >
+          <CarouselItem key={index} onClick={() => playSong(index)} className="pl-1 md:basis-1/3">
             <div className="p-1">
               <AnimatePresence mode="wait">
                 {activeSong === index && isPlaying ? (
-                  <motion.div
-                    key="image"
-                    initial={{ opacity:0 }}
-                    animate={{ opacity:1, rotate:360 }}
-                    exit={{ opacity:0 }}
-                    transition={{ duration:9, repeat: Infinity, ease:"linear" }}
-                  >
-                    <Image
-                      src={src}
-                      alt={`Music image ${index +1}`}
-                      width={300}
-                      height={300}
-                      className={styles.carousel_image}
-                    />
+                  <motion.div key="image" initial={{ opacity:0 }} animate={{ opacity:1, rotate:360 }} exit={{ opacity:0 }} transition={{ duration:9, repeat: Infinity, ease:"linear" }}>
+                    <Image src={src} alt={`Music image ${index +1}`} width={300} height={300} className={styles.carousel_image}/>
                   </motion.div>
-                ) : 
-                (
-                  <motion.div
-                    key="image"
-                    initial={{ opacity:1 }}
-                    animate={{ opacity:1 }}
-                    // transition={{ duration:10, repeat: Infinity, ease:"linear" }}
-                    // exit={{ opacity:0 }}
-                  >
-                    <Image
-                      src={src}
-                      alt={`Music image ${index +1}`}
-                      width={300}
-                      height={300}
-                      className={styles.carousel_image}
-                    />
+                ) : (
+                  <motion.div key="image" initial={{ opacity:1 }} animate={{ opacity:1 }}>
+                    <Image src={src} alt={`Music image ${index +1}`} width={300} height={300} className={styles.carousel_image}/>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -162,44 +145,36 @@ export function CarouselMusic() {
           </CarouselItem>
         ))}
       </CarouselContent>
+
       <div className={styles.carouselPlayer}>
-      <div className={styles.currentlyPlaying}>
-        {activeSong === null ? (
-          <p>Click on the vinyl to start playing your favorites!</p>
-        ) : (
-          <p>Now Playing: {songName[activeSong]}</p>
-        )}
-      </div>
+        <div className={styles.currentlyPlaying} style={{ overflow:"hidden"}}>
+          {activeSong === null ? (
+            <p>Click on the vinyl to start playing your favorites!</p>
+          ) : (
+            <motion.p variants={marqueeVariants} animate="animate" style={{ whiteSpace:"nowrap" }}>
+              Now Playing: {songName[activeSong]}
+            </motion.p>
+          )}
+        </div>
 
-      <div style={{ display:"flex", alignItems:"center", gap:"10px" }}>
-        {/* Previous Song Button */}
-        <button style={{ all:'unset', cursor:'pointer' }} onClick={handlePreviousSong}>
-          <div className={styles.prevCover}>
-            <Image src="/music_page/prevsong.png" alt="prev" width={25} height={25} />
-          </div>
-        </button>
+        <div style={{ display:"flex", alignItems:"center", gap:"10px" }}>
+          <button style={{ all:'unset', cursor:'pointer' }} onClick={handlePreviousSong}>
+            <Image src="/music_page/prevsong.png" alt="prev" width={25} height={25}/>
+          </button>
 
-        {/* Carousel Previous */}
-        <CarouselPrevious />
+          <CarouselPrevious />
 
-        {/* Play/Pause Button */}
-        <button style={{ all:'unset', cursor:'pointer' }} onClick={togglePlayPause}>
-          <div className={styles.prevCover}>
-            <Image src={isPlaying ? "/music_page/pause.png" : "/music_page/play.png"} alt="play-pause" width={25} height={25} />
-          </div>  
-        </button>
+          <button style={{ all:'unset', cursor:'pointer' }} onClick={togglePlayPause}>
+            <Image src={isPlaying ? "/music_page/resume.png" : "/music_page/play.png"} alt="play-pause" width={25} height={25}/>
+          </button>
 
-        {/* Carousel Next */}
-        <CarouselNext />
+          <CarouselNext />
 
-        {/* Next Song Button */}
-        <button style={{ all:'unset', cursor:'pointer' }} onClick={handleNextSong}>
-          <div className={styles.prevCover}>
-            <Image src="/music_page/nextsong.png" alt="next" width={25} height={25} />
-          </div>
-        </button>
-      </div>
+          <button style={{ all:'unset', cursor:'pointer' }} onClick={handleNextSong}>
+            <Image src="/music_page/nextsong.png" alt="next" width={25} height={25}/>
+          </button>
+        </div>
       </div>
     </Carousel>
-  )
+  );
 }
