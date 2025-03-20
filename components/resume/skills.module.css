@@ -52,3 +52,45 @@
     font-size: 1.1em;
     font-weight: 500;
 }
+
+@media screen and (max-width : 768px) {
+
+    .heading{
+        padding-top: 5vh;
+        min-width: 100%;
+    }
+    .main{
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .stack_icons{
+        max-width: 100%;
+    }
+
+    .icon_img{
+        padding: 5px;
+        border-radius: 20px;
+    }
+
+    .hardskills{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #212121;
+        border-radius: 20px;
+        min-width: 100vw;
+    }
+
+    .hardskills_img{
+        width: 100%;
+    }
+    
+
+    .expertise_content{
+        font-size: 1.1em;
+        font-weight: 500;
+    }
+}

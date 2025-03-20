@@ -54,7 +54,6 @@ export default function Skills(){
                     <div><Image src="/resume/Down.png" alt="down" width={25} height={25} /></div>
             </div>
             <div className={styles.hardskills}>
-                
                 <div>
                 <Image src="/resume/robo.gif" alt="" width={300} height={150} className={styles.hardskills_img} />
                 <div className={styles.stack_icons}>
