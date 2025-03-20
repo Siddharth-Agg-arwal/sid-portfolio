@@ -81,3 +81,17 @@
     color : #F4F4F2;
     border: 0px;
 }
+
+@media screen and (max-width : 768px) {
+    .main{
+        width : 40vw;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .card{
+        height : 25vh;
+        width: 100%;
+        align-items: flex-start;
+        /* justify-content: flex-start; */
+    }
+}

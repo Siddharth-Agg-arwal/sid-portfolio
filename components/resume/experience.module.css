@@ -61,3 +61,11 @@
 .timeline{
     padding: 0 1vw;
 }
+
+@media screen and (max-width : 768px) {
+    .card{
+        max-width: 25vw;
+        font-size: 0.75rem;
+        max-height: 20vh;
+    }
+}

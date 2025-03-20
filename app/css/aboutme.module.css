@@ -57,3 +57,28 @@
     border:1px solid #212121 ;
     color : #212121;
 }
+
+@media screen and (max-width: 768px){
+    .main{
+        overflow-x: hidden;
+        flex-direction: column;
+        padding-top: 5vh;
+        min-height: fit-content;
+        max-width: 100%;
+    }
+
+    .me{
+        width : 200px;
+        height : 300px; 
+    }
+
+    .leftComp{
+        max-width: 100%;
+    }
+
+    .rightComp{
+        max-width: 100%;
+        font-size: 0.8rem;
+    }
+    
+}

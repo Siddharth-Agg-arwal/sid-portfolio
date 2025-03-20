@@ -33,3 +33,33 @@
     justify-content: center;
     max-width : 30%;
 }
+
+@media screen and (max-width : 768px ) {
+    .main{
+        flex-direction: column;
+        /* max-width: 100vw; */
+        height: fit-content;
+        max-width: 100vw;
+        align-items: flex-start;
+        justify-content: center;
+        scale : 0.7;
+    }
+
+    .middleContent{
+        justify-content: center;
+        align-items: flex-start;
+        min-width: 100%;
+    }
+
+    .leftContent{
+        justify-content: center;
+        align-items: flex-start;
+        min-width: 100%;
+    }
+
+    .rightContent{
+        justify-content: center;
+        align-items: flex-start;
+        min-width: 100%;
+    }
+}
