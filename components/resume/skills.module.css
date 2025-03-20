@@ -67,7 +67,7 @@
     }
 
     .stack_icons{
-        max-width: 100%;
+        max-width: 90%;
     }
 
     .icon_img{
@@ -81,7 +81,7 @@
         align-items: center;
         background-color: #212121;
         border-radius: 20px;
-        min-width: 100vw;
+        min-width: 90vw;
     }
 
     .hardskills_img{

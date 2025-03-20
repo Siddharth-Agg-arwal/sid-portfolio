@@ -16,7 +16,7 @@
         { label: "Set Music", path: "set-music" },
         { label: "About Me", path: "about-me" },
         { label: "Resume", path: "resume" },
-        { label: "Work", path: "work" },
+        { label: "Work", path: "works" },
     ];
 
     // Track the active tab as a string (the tab label).

@@ -9,7 +9,7 @@ export default function Works(){
                 <div>Projects</div>
                 <div className={styles.downImg}><Image src="/resume/Down.png" alt="down" width={25} height={25} /></div>
             </div>
-            <ProjectCards />
+            <div className={styles.project_cards}><ProjectCards /></div>
         </div>
     )
 }

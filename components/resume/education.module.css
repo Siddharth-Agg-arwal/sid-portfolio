@@ -83,15 +83,43 @@
 }
 
 @media screen and (max-width : 768px) {
+    .heading{
+        padding-top:5vh ;
+        min-width: 90%;
+    }
     .main{
-        width : 40vw;
-        align-items: flex-start;
+        width : 100vw;
+        align-items: center;
         justify-content: flex-start;
     }
+
+    .softskills {
+        /* display: grid; */
+        justify-content: flex-start;
+        align-items: flex-start;
+        min-width: 90%;
+        /* grid-template-columns: repeat(2, 1fr); */
+        /* gap:5px; */
+    }
+
+    .soft{
+        padding : 1vh 2.5vw;
+        font-size: 1rem;
+        /* width: paddin; */
+    }
+    
     .card{
         height : 25vh;
         width: 100%;
-        align-items: flex-start;
+        /* align-items: flex-start; */
         /* justify-content: flex-start; */
+    }
+
+    .edu{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 90vw;
     }
 }

@@ -55,3 +55,24 @@
     border-bottom: 3px solid #212121;
     transition: border-bottom-color 0.3s linear;
 }
+
+@media screen and (max-width : 768px) {
+
+    .leftContent{
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    .rightContent{
+        font-size: 0.75rem;
+        display: flex;
+        width: 100%;
+        /* justify-content: flex-end; */
+        /* align-items: flex-end; */
+    }
+    .main{
+        /* flex-direction: column; */
+        font-size: 0.75rem;
+    }    
+}

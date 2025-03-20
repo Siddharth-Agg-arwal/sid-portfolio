@@ -3,6 +3,11 @@
     /* background-color: black; */
     font-family: Exo2-R;
     color : #F4F4F2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width : 100%;
 }
 
 /* Hero (first) section */
@@ -155,17 +160,44 @@
 
 .heading{
     /* margin: 2vh 0vw; */
-    width : 100%;
+    width : 10vw;
     color : #212121;
     font-size: 1.75em;
     font-weight: 600;
     display: flex;
     /* justify-content: space-between; */
     padding-top: 12.5vh;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
 .downImg{
     padding-left : 2vw;
+}
+
+
+@media screen and (max-width: 768px) {
+    .heading{
+        width: 100vw;
+        width : 90%;
+    }
+
+    .cardInner {
+        width: 90%;
+    }
+
+    .cardContent {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .cardTextContainer {
+        width: 100%;
+    }
+
+    .cardImageContainer {
+        width: 100%;
+        height: 80%;
+    }
+    
 }

@@ -22,8 +22,12 @@
 
 .engraved {
     opacity: 0.15;
-    position: absolute;
-    top : 0vh;
+    /* position: absolute; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 10vh;
     font-size: 7.5rem;
     font-family: Exo2-R;
     background-color: rgb(33, 33, 33);
@@ -32,4 +36,11 @@
     background-clip: text;
     color: transparent;
     text-shadow: rgba(245,245,245,0.5) 3px 5px 1px;
+}
+
+@media screen and (max-width : 768px) {
+    .engraved{
+        font-size: 4rem;
+        padding-bottom: 6vh;
+    }
 }

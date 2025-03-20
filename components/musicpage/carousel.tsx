@@ -158,21 +158,27 @@ export function CarouselMusic() {
         </div>
 
         <div style={{ display:"flex", alignItems:"center", gap:"10px" }}>
-          <button style={{ all:'unset', cursor:'pointer' }} onClick={handlePreviousSong}>
-            <Image src="/music_page/prevsong.png" alt="prev" width={25} height={25}/>
-          </button>
+          <div className={styles.prevCover}>
+            <button style={{ all:'unset', cursor:'pointer' }} onClick={handlePreviousSong}>
+              <Image src="/music_page/prevsong.png" alt="prev" width={25} height={25}/>
+            </button>
+          </div>
 
           <CarouselPrevious />
-
-          <button style={{ all:'unset', cursor:'pointer' }} onClick={togglePlayPause}>
+          
+          <div className={styles.prevCover}>
+          <button className={styles.prevCover} style={{ all:'unset', cursor:'pointer' }} onClick={togglePlayPause}>
             <Image src={isPlaying ? "/music_page/resume.png" : "/music_page/play.png"} alt="play-pause" width={25} height={25}/>
           </button>
+          </div>
 
           <CarouselNext />
-
-          <button style={{ all:'unset', cursor:'pointer' }} onClick={handleNextSong}>
-            <Image src="/music_page/nextsong.png" alt="next" width={25} height={25}/>
+          
+          <div className={styles.prevCover}>
+          <button className={styles.prevCover} style={{ all:'unset', cursor:'pointer' }} onClick={handleNextSong}>
+            <Image  src="/music_page/nextsong.png" alt="next" width={25} height={25}/>
           </button>
+          </div>
         </div>
       </div>
     </Carousel>
