@@ -23,8 +23,8 @@ const PopupRightSection: React.FC<PopupRightSectionProps> = ({ index }) => {
         {
             title: "Plexus",
             image1: "/works/plexus.png",
-            image2: "/works/Plexus/Stats page.png",
-            image3: "/works/Plexus/Apply for job.png",
+            image2: "/works/Plexus/1.png",
+            image3: "/works/Plexus/2.png",
             description: "Another sample description",
             organisationLink: "https://www.example.com",
             heading1 : "For Students",

@@ -1,5 +1,6 @@
 .content canvas{
     border-radius: 20px;
+    /* max-width: 100px; */
 }
 
 .tags{
@@ -30,4 +31,39 @@
     font-size: 1.2em;
     display: flex;
     justify-content: space-around;
+}
+
+@media screen and (max-width : 768px ) {
+    /* .tags{
+        width : 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    } */
+
+    .main{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .tag_text{
+        font-size: 0.8rem;
+    }
+
+    .arrow_img{
+        padding-top: 5%;
+    }
+
+    .tags{
+        width : 100%;
+        padding-bottom: 7.5vh;
+    }
+    
+    .content canvas{
+        border-radius: 20px;
+        max-width: 370px;
+    }
+    
 }

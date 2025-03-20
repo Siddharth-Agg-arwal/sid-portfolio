@@ -31,22 +31,12 @@
 }
 
 
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
-}
-
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 180px;
-}
-
-
 @media screen and (max-width : 768px) {
   .page{
     gap : 0px;
-    padding: 10px;
+    padding: 2%;
+    margin : 0;
+    /* margin-left: -20vw; */
     /* display: ; */
   }
 
