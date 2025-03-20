@@ -65,19 +65,25 @@
         padding-top: 5vh;
         min-height: fit-content;
         max-width: 100%;
+        justify-content: center;
+        align-items: center;
+        /* padding: 10%; */
     }
 
     .me{
-        width : 200px;
-        height : 300px; 
+        height : 55vh;
+        max-width : 80%; 
+        padding : 0;
     }
 
     .leftComp{
-        max-width: 100%;
+        display: flex;
+        justify-content: center;    
+        min-width: 100%;
     }
 
     .rightComp{
-        max-width: 100%;
+        min-width: 80%;
         font-size: 0.8rem;
     }
     
