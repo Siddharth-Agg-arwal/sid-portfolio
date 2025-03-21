@@ -15,16 +15,16 @@ import {
 } from "@/components/ui/carousel"
 
 const musicImages = [
-  "/music_page/coldplay.png",
-  "/music_page/kendrick.png",
-  "/music_page/malone.png",
-  "/music_page/21pilots.png",
-  "/music_page/travis.png",
-  "/music_page/joji.png",
-  "/music_page/coldplay2.png",
-  "/music_page/metro.png",
-  "/music_page/weeknd.png",
-  "/music_page/xxx.png",
+  "https://res.cloudinary.com/danxppoxy/image/upload/v1742572785/Sidcom/coldplay_bhjgji.png",
+  "https://res.cloudinary.com/danxppoxy/image/upload/v1742572789/Sidcom/kendrick_nfc4k6.png",
+  "https://res.cloudinary.com/danxppoxy/image/upload/v1742572787/Sidcom/malone_cowbey.png",
+  "https://res.cloudinary.com/danxppoxy/image/upload/v1742572788/Sidcom/21pilots_uo3bhm.png",
+  "https://res.cloudinary.com/danxppoxy/image/upload/v1742572785/Sidcom/travis_qvmmti.png",
+  "https://res.cloudinary.com/danxppoxy/image/upload/v1742572789/Sidcom/joji_ziw7mi.png",
+  "https://res.cloudinary.com/danxppoxy/image/upload/v1742572786/Sidcom/coldplay2_r2lffj.png",
+  "https://res.cloudinary.com/danxppoxy/image/upload/v1742572788/Sidcom/metro_kflhod.png",
+  "https://res.cloudinary.com/danxppoxy/image/upload/v1742572788/Sidcom/weeknd_dgg7be.png",
+  "https://res.cloudinary.com/danxppoxy/image/upload/v1742572788/Sidcom/xxx_t7zojm.png",
 ]
 
 const musicAudios = [

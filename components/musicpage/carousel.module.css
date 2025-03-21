@@ -36,8 +36,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    filter: drop-shadow(10 6mm 10mm rgb(0, 0, 0, 0.8));    /* border: 1px solid black; */
-    /* width: 100%; */
+    filter: drop-shadow(20 12mm 12mm rgb(0, 0, 0, 0.8)); 
 }
 
 .carousel_image1{
