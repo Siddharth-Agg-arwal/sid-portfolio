@@ -4,7 +4,7 @@ import styles from './education.module.css'
 export default function Education(){
     
     const experiences = [
-        {from : "2022", to: "present", company:"Thapar Institute of Engineering and Technology, Patiala", job_title:"B.E. in Computer Engineering",grade: "(9.11/10.00 CGPA)", status: "/resume/Clock.png"},
+        {from : "2022", to: "present", company:"Thapar Institute of Engineering and Technology, Patiala", job_title:"B.E. in Computer Engineering",grade: "(9.05/10.00 CGPA)", status: "/resume/Clock.png"},
         {from : "2020", to: "2022", company:"SGGS, Chandigarh", job_title:"Higher Secondary Education in Science",grade: "(90.4/100 Percent CBSE)", status: "/resume/Checkmark.png"},
         // {from : "2022", to: "2022", company:"NIELIT", job_title:"ML Trainee (Machine Learning using Sklearn, Flask, Pandas, Numpy)", month_from: "May", month_to : "July", status: "/resume/Checkmark.png"},
     ];

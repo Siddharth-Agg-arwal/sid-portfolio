@@ -32,7 +32,7 @@ export default function Socials(){
                 <div className={styles.card_upper}><Image src="/about_me/gitub.png" alt="git" width={35} height={35} /></div>
                 <div className={styles.card_lower}>
                     <hr></hr>
-                    <p><a href="https://github.com/SiddharthAggarwal">https://github.com/SiddharthAggarwal</a></p>
+                    <p><a href="https://github.com/Siddharth-Agg-arwal">https://github.com/Siddharth-Agg-arwal</a></p>
                 </div>
             </div>
         </div>
