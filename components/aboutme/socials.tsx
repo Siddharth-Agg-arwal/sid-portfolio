@@ -15,7 +15,7 @@ export default function Socials(){
                 <div className={styles.card_upper}><Image src="/about_me/mail.png" alt="mail" width={50} height={50} /></div>
                 <div className={styles.card_lower}>
                     <hr></hr>
-                    <p>aggarwal.siddharth2003@gmail.com</p>
+                    <p><a href="mailto:aggarwal.siddharth2003@gmail.com">aggarwal.siddharth2003@gmail.com</a></p>
                 </div>
             </div>
 
@@ -23,7 +23,8 @@ export default function Socials(){
                 <div className={styles.card_upper}><Image src="/about_me/linkedin.png" alt="linkedin" width={35} height={35} /></div>
                 <div className={styles.card_lower}>
                     <hr></hr>
-                    <p>aggarwal.siddharth2003@gmail.com</p>
+                    <p><a href="https://www.linkedin.com/in/siddharth-aggarwal-b9613b252">
+                        https://www.linkedin.com/in/siddharth-aggarwal-b9613b252</a></p>
                 </div>
             </div>
 
@@ -31,7 +32,7 @@ export default function Socials(){
                 <div className={styles.card_upper}><Image src="/about_me/gitub.png" alt="git" width={35} height={35} /></div>
                 <div className={styles.card_lower}>
                     <hr></hr>
-                    <p>aggarwal.siddharth2003@gmail.com</p>
+                    <p><a href="https://github.com/SiddharthAggarwal">https://github.com/SiddharthAggarwal</a></p>
                 </div>
             </div>
         </div>
